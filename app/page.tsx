@@ -16,7 +16,7 @@ const HomePage = async () => {
           const { id, title, subTitle, updatedAt } = post;
 
           return (
-            <article className="pt-7 pb-3 border-b">
+            <article key={id} className="pt-7 pb-3 border-b">
               <time className="text-gray-600 dark:text-gray-400 text-sm">
                 {formatDateToKorean(updatedAt)}
               </time>
