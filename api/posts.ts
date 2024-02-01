@@ -6,6 +6,8 @@ export type TypePost = {
   title: string;
   subTitle: string;
   content: string;
+  createdAt: Date;
+  updatedAt: Date;
 };
 
 export const getAllPosts = async (): Promise<TypePost[]> => {
@@ -13,7 +15,8 @@ export const getAllPosts = async (): Promise<TypePost[]> => {
 };
 
 export const getPostById = async (id: number): Promise<TypePost> => {
-  return await http.get(`/posts/${id}`, { next: { tags: [id] } });
+  const tag = `post-${id}`;
+  return await http.get(`/posts/${id}`, { next: { tags: [tag] } });
 };
 
 export const updatePostById = async ({
@@ -26,5 +29,6 @@ export const updatePostById = async ({
     title,
     subTitle,
     content,
+    updatedAt: new Date(),
   });
 };

@@ -7,25 +7,49 @@ const PostWritePage = async ({
 }: {
   params: { id: number };
 }) => {
-  const { slug, title, subTitle, content } = await getPostById(id);
+  const { title, subTitle, content } = await getPostById(id);
 
-  const updateContent = async (formData: any) => {
+  const updatePost = async (formData: any) => {
     "use server";
 
     const { title, subTitle, content } = Object.fromEntries(formData);
 
-    await updatePostById({ id, title, subTitle, content });
-    revalidateTag(slug);
+    await updatePostById({
+      id,
+      title,
+      subTitle,
+      content,
+    });
+
+    const tag = `post-${id}`;
+    revalidateTag(tag);
     revalidateTag("allPosts");
-    redirect(`/post/${id}`); // Navigate to the new post page
+    redirect(`/posts/${id}`);
   };
 
   return (
-    <form action={updateContent}>
-      <input name="title" defaultValue={title} />
-      <input name="subTitle" defaultValue={subTitle} />
-      <input name="content" defaultValue={content} />
-      <button type="submit">update content</button>
+    <form className="flex flex-col gap-2" action={updatePost}>
+      <textarea
+        className="text-4xl flex rounded-md border border-input px-3 py-2 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50',"
+        name="title"
+        defaultValue={title}
+      />
+      <input
+        className="text-2xl  flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        name="subTitle"
+        defaultValue={subTitle}
+      />
+      <textarea
+        className="h-72 text-4lg flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 ring-offset-background focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+        name="content"
+        defaultValue={content}
+      />
+      <button
+        className="border p-2 flex items-center justify-center rounded-md text-sm font-medium"
+        type="submit"
+      >
+        update content
+      </button>
     </form>
   );
 };
