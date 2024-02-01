@@ -1,7 +1,19 @@
-const HomePage = () => {
-  return (
-      <div>123</div>
-  )
-}
+import Link from "next/link";
+import { getAllPosts } from "@/api/posts";
+import type { TypePost } from "@/api/posts";
 
-export default HomePage
+const HomePage = async () => {
+  const allPosts = await getAllPosts();
+
+  return (
+    <ul>
+      {allPosts.map(({ id, title }: TypePost) => (
+        <li key={id}>
+          <Link href={`/posts/${id}`}>{title}</Link>
+        </li>
+      ))}
+    </ul>
+  );
+};
+
+export default HomePage;
