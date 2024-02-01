@@ -5,7 +5,10 @@
   "scripts": {
     "dev:client": "next dev --port 3000",
     "dev:server": "json-server --watch db.json --port 4000",
-    "dev": "npm-run-all --parallel dev:client dev:server",
+    "instance-1": "next dev --port 3001",
+    "instance-2": "next dev --port 3002",
+    "instance:single": "npm-run-all --parallel dev:client dev:server",
+    "instance:multi": "npm-run-all --parallel instance:single instance-1 instance-2",
     "build": "next build",
     "start": "next start",
     "lint": "next lint"
