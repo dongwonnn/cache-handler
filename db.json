@@ -1,19 +1,22 @@
 {
-  "memo": [
+  "posts": [
     {
-      "id": 1,
-      "title": "메모 제목 1",
-      "content": "내용 1"
+      "id": "1",
+      "slug": "multi-instance-data-caching",
+      "title": "Next.js RSC의 캐시 데이터 전략: 멀티 인스턴스 환경에서 캐시 공유가 필요한 과정",
+      "subTitle": "인스턴스 간 캐시가 공유되지 않으면서 발생한 문제를 정리해 봤습니다."
     },
     {
-      "id": 2,
-      "title": "메모 제목 2",
-      "content": "내용 2"
+      "id": "2",
+      "slug": "cloud-run-deplopy",
+      "title": "GCP Cloud Run을 활용한 서비스 배포",
+      "subTitle": "Cloud Run을 활용한 서비스 배포 경험을 공유합니다."
     },
     {
-      "id": 3,
-      "title": "메모 제목 3",
-      "content": "내용 3"
+      "id": "3",
+      "slug": "transfrom-playwright",
+      "title": "E2E Test 도구 Playwright 전환기",
+      "subTitle": "Playwright로 전환하며 겪었던 과정들을 공유합니다."
     }
   ]
 }
