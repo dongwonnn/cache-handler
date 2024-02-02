@@ -1,7 +1,6 @@
-import { revalidateTag } from "next/cache";
+import { revalidateTag, revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { getPostById, updatePostById } from "@/api/posts";
-
 const PostWritePage = async ({
   params: { id },
 }: {
@@ -22,8 +21,10 @@ const PostWritePage = async ({
     });
 
     const tag = `post-${id}`;
-    revalidateTag(tag);
-    revalidateTag("allPosts");
+    revalidatePath("/posts/1");
+
+    // revalidateTag(tag);
+    // revalidateTag("allPosts");
     redirect(`/posts/${id}`);
   };
 
