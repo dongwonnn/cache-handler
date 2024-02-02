@@ -4,7 +4,7 @@ const createRedisCache = require("@neshca/cache-handler/redis-strings").default;
 const { createClient } = require("redis");
 
 const client = createClient({
-  socket: { host: cache.redis.host, port: cache.redis.port },
+  socket: { host: "127.0.0.1", port: 6379 },
 });
 
 client.on("error", (error) => {
