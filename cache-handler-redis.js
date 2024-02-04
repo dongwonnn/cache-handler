@@ -1,32 +1,40 @@
-const cache = new Map();
+const { createClient } = require("redis");
+
+const client = createClient({
+  socket: { host: "127.0.0.1", port: 6379 },
+});
+
+client.connect();
 
 module.exports = class CacheHandler {
-  constructor(options) {
-    this.options = options;
-  }
-
   async get(key) {
-    const value = cache.get(key);
-    console.log("[=== get value ===]", value);
-    return value;
+    try {
+      const value = await client.get(key);
+      return value;
+    } catch (err) {
+      console.error("Error fetching from Redis:", err);
+    }
   }
 
-  async set(key, data, ctx) {
-    console.log("[=== set key ===]", key);
-    cache.set(key, {
-      value: data,
-      lastModified: Date.now(),
-      tags: ctx.tags,
-    });
+  async set(key, value, ctx) {
+    try {
+      await client.set(key, {
+        value,
+        lastModified: Date.now(),
+        tags: ctx.tags,
+      });
+    } catch (err) {
+      console.error("Error setting value in Redis:", err);
+    }
   }
 
   async revalidateTag(tag) {
-    console.log("[=== revalidateTag tag ===]", tag);
+    const stream = await client.scanIterator();
+    for await (const key of stream) {
+      const value = await client.get(key);
 
-    for (let [key, value] of cache) {
-      // If the value's tags include the specified tag, delete this entry
       if (value.tags.includes(tag)) {
-        cache.delete(key);
+        await client.del(key);
       }
     }
   }

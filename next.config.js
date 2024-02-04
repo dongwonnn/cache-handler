@@ -6,7 +6,7 @@ const nextConfig = {
    * 2. redis를 이용한 cache handler
    * 3. neshca를 이용한 cache handler
    * */
-  // cacheHandler: require.resolve("./cache-handler-custom.js"),
+  cacheHandler: require.resolve("./cache-handler-custom.js"),
   // cacheHandler: require.resolve('./cache-handler-redis.js'),
   // cacheHandler: require.resolve('./cache-handler-neshca.js'),
 

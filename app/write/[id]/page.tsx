@@ -21,10 +21,8 @@ const PostWritePage = async ({
     });
 
     const tag = `post-${id}`;
-    revalidatePath("/posts/1");
-
-    // revalidateTag(tag);
-    // revalidateTag("allPosts");
+    revalidateTag(tag);
+    revalidateTag("allPosts");
     redirect(`/posts/${id}`);
   };
 
