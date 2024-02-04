@@ -2,27 +2,27 @@
   "posts": [
     {
       "id": "1",
-      "slug": "multi-instance-data-caching",
-      "title": "Next.js RSC의 캐시 데이터 전략: 멀티 인스턴스 환경에서 캐시 공유가 필요한 과정4466",
-      "subTitle": "인스턴스 간 캐시가 공유되지 않으면서 발생한 문제를 정리합니다.",
+      "slug": "slug1",
+      "title": "Post - Title 1",
+      "subTitle": "Post - Title 1",
       "content": "수정 버튼을 눌러 수정하세요.",
       "createdAt": "2024-01-07 20:59:35.663687",
-      "updatedAt": "2024-02-02T05:15:38.099Z"
+      "updatedAt": "2024-02-04T10:39:13.033Z"
     },
     {
       "id": "2",
-      "slug": "cloud-run-deplopy",
-      "title": "GCP Cloud Run을 활용한 서비스 배포",
-      "subTitle": "Cloud Run을 활용한 서비스 배포 경험을 공유합니다.",
+      "slug": "slug2",
+      "title": "Post - Title 2",
+      "subTitle": "Post - Title 2",
       "content": "수정 버튼을 눌러 수정하세요.",
       "createdAt": "2023-12-25 20:59:35.663687",
       "updatedAt": "2023-12-25 20:59:35.663687"
     },
     {
       "id": "3",
-      "slug": "transfrom-playwright",
-      "title": "E2E Test 도구 Playwright 전환기",
-      "subTitle": "Playwright로 전환하며 겪었던 과정들을 공유합니다.",
+      "slug": "slug3",
+      "title": "Post - Title 3",
+      "subTitle": "Post - Title 3",
       "content": "수정 버튼을 눌러 수정하세요.",
       "createdAt": "2023-12-03 20:59:35.663687",
       "updatedAt": "2023-12-03 20:59:35.663687"
