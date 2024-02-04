@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+## next.js shared cache example with Redis
 
-## Getting Started
+프론트엔드(Next.js), 백엔드(JSON-server), 그리고 모의 데이터를 활용한 DB 파이프라인 구성 프로젝트입니다.
 
-First, run the development server:
+### Redis 연결
+local 세팅
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+> brew install redis
+>
+> brew services start redis
+
+### cache handler 세팅
+```typescript
+const nextConfig = {
+  /*
+   * 1. new Map()을 이용한 cache handler
+   * 2. redis를 이용한 cache handler
+   * 3. neshca를 이용한 cache handler
+   * */
+  // cacheHandler: require.resolve("./cache-handler-custom.js"),
+  // cacheHandler: require.resolve('./cache-handler-redis.js'),
+  // cacheHandler: require.resolve('./cache-handler-neshca.js'),
+
+  // disabled file system memory
+  cacheMaxMemorySize: 0,
+
+};
+
+module.exports = nextConfig;
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## instance 실행
+### 단일 instance 실행
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+> npm run instance:single
 
-## Learn More
+![스크린샷 2024-02-05 오전 12 34 20](https://github.com/dongwonnn/next-shared-cache-example/assets/59330828/1ceb696b-f856-4e02-b866-ff502a466e46)
 
-To learn more about Next.js, take a look at the following resources:
+### 멀티 instance 실행
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+> npm run instance:multi
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+![스크린샷 2024-02-05 오전 12 34 26](https://github.com/dongwonnn/next-shared-cache-example/assets/59330828/30e0170e-65e1-483d-a831-db0291c1849c)
