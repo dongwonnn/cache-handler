@@ -4,7 +4,18 @@ const client = createClient({
   socket: { host: "127.0.0.1", port: 6379 },
 });
 
-client.connect();
+(async () => {
+  try {
+    await client.connect();
+    console.log("Redis client connected successfully");
+  } catch (error) {
+    console.error("Redis connection error:", error);
+  }
+})();
+
+client.on("error", (error) => {
+  console.error("Redis error:", error);
+});
 
 module.exports = class CacheHandler {
   async get(key) {
