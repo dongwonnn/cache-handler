@@ -16,6 +16,7 @@
   "dependencies": {
     "@neshca/cache-handler": "^0.6.10",
     "@neshca/json-replacer-reviver": "^1.1.1",
+    "json-server": "^1.0.0-alpha.23",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
